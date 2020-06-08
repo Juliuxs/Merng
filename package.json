@@ -7,7 +7,7 @@
     "start": "node index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Juliuxs",
   "license": "ISC",
   "dependencies": {
     "apollo-server": "^2.14.2",

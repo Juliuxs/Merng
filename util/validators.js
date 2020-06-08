@@ -25,7 +25,7 @@ module.exports.validateRegisterInput = (
 
   return {
     errors,
-    valid: Object.keys(errors).length < 1
+    valid: Object.keys(errors).length < 1,
   };
 };
 
@@ -37,9 +37,8 @@ module.exports.validateLoginInput = (username, password) => {
   if (password === '') {
     errors.password = 'Password must not be empty';
   }
-
   return {
     errors,
-    valid: Object.keys(errors).length < 1
+    valid: Object.keys(errors).length < 1,
   };
 };
