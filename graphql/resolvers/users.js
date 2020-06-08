@@ -7,7 +7,6 @@ const {
   validateLoginInput
 } = require('../../util/validators');
 
-
 const { SECRET_KEY } = require('../../config');
 const User = require('../../models/User');
 
@@ -19,7 +18,6 @@ function generateToken(user) {
       username: user.username
     },
     SECRET_KEY,
-
     { expiresIn: '1h' }
   );
 }
@@ -28,9 +26,7 @@ module.exports = {
   Mutation: {
 
     async login(_, { username, password }) {
-
       const { errors, valid } = validateLoginInput(username, password);
-
       if (!valid) {
         throw new UserInputError('Errors', { errors });
       }
@@ -65,7 +61,6 @@ module.exports = {
         registerInput: { username, email, password, confirmPassword }
       }
     ) {
-      // Validate user data
       const { valid, errors } = validateRegisterInput(
         username,
         email,
@@ -77,7 +72,6 @@ module.exports = {
         throw new UserInputError('Errors', { errors });
       }
 
-      // TODO: Make sure user doesnt already exist
       const user = await User.findOne({ username });
 
       if (user) {
@@ -87,7 +81,7 @@ module.exports = {
           }
         });
       }
-      // hash password and create an auth token
+
       password = await bcrypt.hash(password, 10);
 
       const newUser = new User({
